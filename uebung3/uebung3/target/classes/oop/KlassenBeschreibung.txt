@@ -1,0 +1,103 @@
+WOOSEOK:
+
+Main:
+ -besitzt nur Java Projekt main methode
+ -erzeugt RunChiffreObjekt
+ -ruft RunChiffre.run()
+ 
+RunChiffre:
+ -fragt Nutzer wlassen will
+   o Ja -> TestChiffreObjekt erzeugen und .run() rufen
+   o Nein -> UseChiffreObjekt erueugen und .run() rufen
+   
+TestChiffre:
+  -Fragt welches WertePreset geladen werden soll
+  -Besitzt a = 421 b = 54773 m = 259200 key = 3 als Preset1
+  -Besitzt a = 3877 b = 29573 m = 139968 key = 3 als Preset2
+  -Fragt nach Namen der zuerstellenden Datei
+  -Erzeugt XORChiffreObjekt mit a,b,m,key,readFrom und writeTo und .run() rufen
+  (readFrom kannst du vorher festlegen. Vielleicht nutzt du eine Datei mit vordefiniertem Namen
+  wie z.N InputText, die du im Packet Ordner vorher erstellst)
+
+UseChiffre:
+  -Fragt nach a, b, m, key und Namen der zuerstellenden Datei
+  -Erzeugt XORChiffreObjekt mit a,b,m,key,readFrom und writeTo und .run() rufen
+  
+XORChiffre:
+  -Konstruktor:
+    -erzeugt Writer und gibt ihm WriteTo im Konstruktor
+	-erzeugt PlainText und gibt ihm ReadFrom im Konstruktor
+	-erzeugt Keys und gibt ihm a,b,m und key weiter
+  
+  -run():
+	-besitzt For Schleife von 0 bis PlainText.getLength()
+	-ruft so oft encodeNext() und speichert in myBitArray[i];
+	-ruft writeToFile
+
+  -encodeNext():
+    -ruft PlainText.nextBit() und Keys.nextBit() und verknüpft diese mit XOR
+    -gibt dieses Bit als boolean aus
+	
+  -writeToFile():
+    -ruft Writer.createFile(myBitArray)
+
+BitArrayToFile:
+  -Konstruktor:
+    -speichert übergebenen namen
+	
+  -createFile():
+    -erzeugt eine neue datei
+    -schreibt das boolArray in die Datei
+  
+  
+  
+  
+LUCAS:
+
+FileToBit:
+  (position startet auf 0)
+  
+  -Konstruktor:
+    -erzeugt FileToStringObjekt und gibt ihm name weiter
+    -ruft FileToString.convert
+	-ruft sein eigenes convert mit diesem String
+	
+  -convert():
+    -ruft getString von FileToStringObjekt
+    -speichert erhaltenen String in myBitArray
+	  -Ascii code
+	  -andere Zeichen ausschließen
+	-speichert länge des Array in length
+	
+  -setPosition():
+    -normaler Setter
+	
+  -getLength():
+    -normaler Getter
+	
+  -getArray():
+    -gibt gesamtesArray aus
+	
+  -getNext():
+    -gibt bool an Array[position] aus
+	-position++
+	
+FileToString:
+  -Konstruktor: 
+    -setzt name auf input
+	-convert speichert Datei Inhalt als String
+
+  -getString() : normaler Getter
+	
+KeyBit:
+  -Konstruktor:
+    -speichert a,b,m und key (lastValue=key)
+	
+  -nextBit():
+    -gibt den nächsten Bit nach Formel als boolean zurück
+	speichert neues lastValue
+	
+	
+	
+
+	

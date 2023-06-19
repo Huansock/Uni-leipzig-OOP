@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"uebung4","l":"App"},{"p":"uebung4","l":"Fisch"},{"p":"uebung4","l":"FischFinder"},{"p":"uebung4","l":"FischLoader"},{"p":"uebung4","l":"Komposition"},{"p":"uebung4","l":"UserInterface"},{"p":"uebung4","l":"UserInterface.UserInterfaceException"}];updateSearchResults();

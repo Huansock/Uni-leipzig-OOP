@@ -1,0 +1,81 @@
+ ---
+title: "Tankstelle"
+---
+classDiagram
+    note "3754992, Gruppe 2, woo seok Yang"
+    Main "1" o-- "1" Tankstelle
+    Tankstelle "1" o-- "*" AutoFahrer
+    Tankstelle "1" o-- "1..*" Zapfsaeule
+    Tankstelle "1" o-- "1" Kasse
+    Zapfsaeule "1" o-- "*" AutoFahrer
+    Kasse "1" o-- "*" AutoFahrer
+
+
+
+    class Main{
+        - Tankstelle : Tankstelle
+        +main(args : String[]): void
+    }
+    class Tankstelle{
+        - zapfsaeulenAnzahl : int
+        - averageAutosZeitabstand : int 
+        - minTankenZeit : int
+        - maxTankenZeit : int
+        - minZahlenZeit : int
+        - maxZahlenZeit : int
+        - minWegZeit : int
+        - maxWegZeit : int
+        - simulationsZeit: int 
+        - protokollabstand: int
+        - zapfsaeuleListe : Zapfsaeule[]
+        - AutoFahrerListe : Queue~AutoFahrer~
+
+        - averageWarteZeitVorZapfsaeulen : int
+        - maxWarteZeitVorZapfsaeulen : int
+        - averageWarteZeitVorKasse : int
+        - maxWarteZeitVorKasse : int
+
+        +Tankstelle(zapfsaeulenAnzahl : int, averageAutosZeitabstand : int, minTankenZeit : int, maxTankenZeit : int, minZahlenZeit : int, maxZahlenZeit : int, minWegZeit : int, maxWegZeit : int, simulationsZeit: int, protokollabstand: int)
+        +simulation():void
+        +log():void
+
+    }
+    class AutoFahrer{
+      - ankommenZeit : int
+      - tankenZeit : int
+      - zahlenZeit : int
+      - wegZeit : int
+      - getankt : boolean
+      - bezahlt : boolean
+      + AutoFahrer(ankommenZeit : int, tankenZeit : int, zahlenZeit : int, wegZeit : int)
+      + getAnkommenZeit(): int
+      + getTankenZeit(): int
+      + getZahlenZeit(): int
+      + getWegZeit(): int
+      + tankt(): void
+      + bezahlt(): void
+      + verlaesst(): void
+      + istGetankt(): boolean
+      + istBezahlt(): boolean
+      + istWeg(): boolean
+    }
+    
+    class Kasse{
+      - schlange : Queue~AutoFahrer~
+      - besetzt : boolean
+      + Kasse(schlange : Queue~AutoFahrer~ , besetzt : boolean)
+      + addInSchlange(autoFahrer : AutoFahrer): void
+      + popSchlange(): void
+      + getSclangeSize(): int
+    }
+
+    class Zapfsaeule{
+      - schlange : Queue~AutoFahrer~
+      - besetzt : boolean
+      - geraeumt : boolean
+      + Zapfsaeule(schlange : Queue~AutoFahrer~ , besetzt : boolean , geraeumt : boolean)
+      + addInSchlange(autoFahrer : AutoFahrer): void
+      + popSchlange(): void
+      + getSclangeSize(): int
+    }
+
